@@ -6,7 +6,7 @@
   "scripts": {
     "watch": "node-sass src/resources/scss/app.scss src/public/css/app.css",
     "dev": "nodemon src/index.js",
-    "start": "node /app/src/index.js",
+    "start": "node ./src/index.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Dg Sg",
