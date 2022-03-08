@@ -1,0 +1,123 @@
+
+{{!-- submit với phương thức get nó sẽ đính lên thanh tìm kiếm các querry parameter
+với phương thức poss k đính lên thanh tìm kiếm mà tạo 1 cái form gửi đi, lấy nội dung của mấy thẻ có name  --}}
+<div class="btn-group">
+  <button type="button" class="btn btn-info dropdown-toggle btn-sm" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    Orderby
+  </button>
+  <div class="dropdown-menu">
+    <div class ="dropdown-item">
+        <form action="">
+            <input type="hidden" name="s" value={{search}}>
+            <input type="hidden" name="orderby" value="price-desc">
+            <input type="submit" value="Giá từ cao xuống thấp">
+        </form>
+    </div>
+
+    <div class ="dropdown-item">
+        <form action="">
+            <input type="hidden" name="s" value={{search}}>
+            <input type="hidden" name="orderby" value="price-incr">
+            <input type="submit"  value="Giá từ thấp lên cao">
+        </form>
+    </div>
+  </div>
+</div>
+
+
+<hr style = "width:50%;text-align:left;margin-left:0">
+<h5>Hiển thị kết quả cho tìm kiếm của bạn "{{search}}"</h5>
+<hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+
+<div class="mt4">
+    <div class="row">
+        {{# if session.passport.user }}
+
+            {{# each products}}
+                {{# isExits this._id ../liked }}
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card border-dark mb-2 card-courses-item">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <a href = "/product/{{this._id}}">
+                                    <img alt="Card image cap" class="card-img-top embed-responsive-item" src="{{this.image}}">
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <a href = "/product/{{this._id}}">
+                                    <h5 class="card-title">{{this.name}}</h5>
+                                </a>
+                                <p data-html="true" class="card-text" data-toggle="tooltip" data-placement="top" title="{{{this.description}}}" >{{{this.description}}}</p>
+                                
+                                {{# notzero this.discount}}
+                                    <h6 style="color:rgba(164, 156, 168, 0.911)"> <del>$ {{this.price}}</del></h6>
+                                    <h4 style="color:rgb(255, 102, 0)">$ {{minus this.price this.discount}}</h4>
+                                {{else}}
+                                    <h6 style = "color:rgba(255, 255, 255)">Chưa có giảm giá :v</h6>
+                                    <h4 style="color:rgb(255, 102, 0)">$ {{this.price}}</h4>
+                                {{/notzero}}
+
+                                <a href="/add-to-cart/{{this._id}}" class="btn btn-primary">Buy</a>
+                                <a href="/user/liked/{{this._id}}" class="btn btn-outline-success">Like</a>
+                            </div>
+                        </div>
+                    </div>
+                {{else}}
+                    <div class="col-sm-6 col-lg-4">
+                        <div class="card border-dark mb-2 card-courses-item">
+                            <div class="embed-responsive embed-responsive-4by3">
+                                <a href = "/product/{{this._id}}">
+                                    <img alt="Card image cap" class="card-img-top embed-responsive-item" src="{{this.image}}">
+                                </a>
+                            </div>
+                            <div class="card-body">
+                                <a href = "/product/{{this._id}}">
+                                    <h5 class="card-title">{{this.name}}</h5>
+                                </a>
+                                <p data-html="true" class="card-text" data-toggle="tooltip" data-placement="top" title="{{{this.description}}}" >{{{this.description}}}</p>
+                                {{# notzero this.discount}}
+                                    <h6 style="color:rgba(164, 156, 168, 0.911)"> <del>$ {{this.price}}</del></h6>
+                                    <h4 style="color:rgb(255, 102, 0)">$ {{minus this.price this.discount}}</h4>
+                                {{else}}
+                                    <h6 style = "color:rgba(255, 255, 255)">Chưa có giảm giá :v</h6>
+                                    <h4 style="color:rgb(255, 102, 0)">$ {{this.price}}</h4>
+                                {{/notzero}}
+                                <a href="/add-to-cart/{{this._id}}" class="btn btn-primary">Buy</a>
+                                <a href="/user/unliked/{{this._id}}" class="btn btn-success">Like</a>
+                            </div>
+                        </div>
+                    </div>
+                {{/isExits}}
+            {{/each}}
+
+        {{ else }}
+            {{#each products}}
+            <div class="col-sm-6 col-lg-4">
+                <div class="card border-dark mb-2 card-courses-item">
+                    <div class="embed-responsive embed-responsive-4by3">
+                        <a href = "/product/{{this._id}}">
+                            <img alt="Card image cap" class="card-img-top embed-responsive-item" src="{{this.image}}">
+                        </a>
+                    </div>
+                    <div class="card-body">
+                        <a href = "/product/{{this._id}}">
+                            <h5 class="card-title">{{this.name}}</h5>
+                        </a>
+                        <p data-html="true" class="card-text" data-toggle="tooltip" data-placement="top" title="{{{this.description}}}" >{{{this.description}}}</p>
+                        {{# notzero this.discount}}
+                            <h6 style="color:rgba(164, 156, 168, 0.911)"> <del>$ {{this.price}}</del></h6>
+                            <h4 style="color:rgb(255, 102, 0)">$ {{minus this.price this.discount}}</h4>
+                        {{else}}
+                            <h6 style = "color:rgba(255, 255, 255)">Chưa có giảm giá :v</h6>
+                            <h4 style="color:rgb(255, 102, 0)">$ {{this.price}}</h4>
+                        {{/notzero}}
+                        <a href="/add-to-cart/{{this._id}}" class="btn btn-primary">Buy</a>
+                        <a href="/user/liked/{{this._id}}" class="btn btn-outline-success">Like</a>
+                    </div>
+                </div>
+            </div>
+            {{/each}}
+        {{/if}}
+
+    </div>
+</div>

@@ -1,0 +1,159 @@
+<div class="mt4">
+  <div> 
+      <h3 style="display:inline-block">Hình ảnh của tôi</h3>
+      <button class=" btn btn-dark float-right" onclick="darkMode()">Dark mode</button>
+
+  </div>
+
+    <hr style="height:2px;border-width:0;color:gray;background-color:gray">
+
+    <input type="text" id="myInput" onkeyup="myFunction()" placeholder="Search for names.." title="Type in a name" style="margin-bottom: 20px;">
+
+    <hr style = "width:50%;text-align:left;margin-left:0">
+
+    <p><button onclick="sortTable()">Sort by Name</button></p>
+
+
+    <table class="table table-striped" id="myTable">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Tên</th>
+                <th scope="col">Mô tả</th>
+                <th scope="col">Thời gian tạo</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each products}}
+                <tr>
+                    <th scope="col">{{ sum @index 1}}</th>
+                    <td scope="col">{{this.name}}</th>
+                    <td scope="col">{{this.description}}</th>
+                    <td scope="col">{{this.createdAt}}</th>
+                    <td>
+                        <a href="/product/{{this._id}}/edit", class="btn btn-link">Sửa</a>
+                        <a href="" class="btn btn-link" data-toggle="modal" data-id= {{this._id}} data-target="#delete_data_model" >Xóa</a>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+</div>
+
+{{!-- Confirm del --}}
+<div id="delete_data_model" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa hình ảnh ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc muốn xóa hình ảnh này ?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="button-delete-image" type="button" class="btn btn-danger">Xóa bỏ</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- image hidden form delete --}}
+<form name = "delete_data_form" method="POST"></form>
+
+{{!-- khi sự kiện DOMContentLoad đc nap vào trình duyeet (cả JQuery) thì mới thực hiện đoạn code  --}}
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var id
+        var deleteForm = document.forms["delete_data_form"]
+        $('#delete_data_model').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        id = button.data('id') 
+  
+        })
+
+        var btnDeleteImage = document.getElementById("button-delete-image")
+
+        btnDeleteImage.onclick = function(){
+            deleteForm.action = '/product/' + id + '?_method=DELETE'
+            deleteForm.submit()
+
+        }
+        
+    })
+
+</script>
+
+<script>
+function myFunction() {
+  var input, filter, table, tr, td, i, txtValue;
+  input = document.getElementById("myInput");
+  filter = input.value.toUpperCase();
+  table = document.getElementById("myTable");
+  tr = table.getElementsByTagName("tr");
+  for (i = 0; i < tr.length; i++) {
+    td = tr[i].getElementsByTagName("td")[0];
+    if (td) {
+      txtValue = td.textContent || td.innerText;
+      if (txtValue.toUpperCase().indexOf(filter) > -1) {
+        tr[i].style.display = "";
+      } else {
+        tr[i].style.display = "none";
+      }
+    }       
+  }
+}
+</script>
+
+
+<script>
+function sortTable() {
+  var table, rows, switching, i, x, y, shouldSwitch;
+  table = document.getElementById("myTable");
+  switching = true;
+  /*Make a loop that will continue until
+  no switching has been done:*/
+  while (switching) {
+    //start by saying: no switching is done:
+    switching = false;
+    rows = table.rows;
+    /*Loop through all table rows (except the
+    first, which contains table headers):*/
+    for (i = 1; i < (rows.length - 1); i++) {
+      //start by saying there should be no switching:
+      shouldSwitch = false;
+      /*Get the two elements you want to compare,
+      one from current row and one from the next:*/
+      x = rows[i].getElementsByTagName("TD")[0];
+      y = rows[i + 1].getElementsByTagName("TD")[0];
+      //check if the two rows should switch place:
+      if (x.innerHTML.toLowerCase() > y.innerHTML.toLowerCase()) {
+        //if so, mark as a switch and break the loop:
+        shouldSwitch = true;
+        break;
+      }
+    }
+    if (shouldSwitch) {
+      /*If a switch has been marked, make the switch
+      and mark that a switch has been done:*/
+      rows[i].parentNode.insertBefore(rows[i + 1], rows[i]);
+      switching = true;
+    }
+  }
+}
+</script>
+
+
+<script>
+function darkMode() {
+   var element = document.body;
+   element.classList.toggle("dark-mode");
+}
+</script>

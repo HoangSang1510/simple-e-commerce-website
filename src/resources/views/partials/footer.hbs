@@ -1,0 +1,143 @@
+<!-- Footer -->
+<footer class="text-center text-lg-start bg-dark text-muted">
+  <!-- Section: Social media -->
+  <section
+    class="d-flex justify-content-center justify-content-lg-between p-4 border-bottom"
+  >
+  </section>
+  <!-- Section: Social media -->
+
+  <!-- Section: Links  -->
+  <section class="">
+    <div class="container text-center text-md-start mt-5">
+      <!-- Grid row -->
+      <div class="row mt-3">
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-4 col-xl-3 mx-auto mb-4">
+          <!-- Content -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            <i class="fas fa-gem me-3"></i>About Us
+          </h6>
+          <p>
+              Công ty có trụ sở trên sao Hỏa. Chuyên cung cấp ảnh và thơ NFT với giá cả trên trời, chất lượng ngoài trái đất, bảo hành trên toàn vũ trụ.
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Products
+          </h6>
+          <p>
+            <a href="/home" class="text-reset">Home</a>
+          </p>
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-3 col-lg-2 col-xl-2 mx-auto mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Follow Us
+          </h6>
+          <p>
+            <a href="#!" class="text-reset">
+              <i class="icon-facebook"> Fakebook</i>
+            </a>
+          </p>
+          <p>
+            <a href="#!" class="text-reset">
+              <i class="icon-instagram"> instagram</i>
+            </a>
+          </p>
+
+          {{!-- <button id="myBtn2" type="button" class="btn btn-dark">About Me</button> --}}
+
+
+        </div>
+        <!-- Grid column -->
+
+        <!-- Grid column -->
+        <div class="col-md-4 col-lg-3 col-xl-3 mx-auto mb-md-0 mb-4">
+          <!-- Links -->
+          <h6 class="text-uppercase fw-bold mb-4">
+            Contact
+          </h6>
+          <p><i class="fas fa-home me-3"></i> City, Postal code, Country</p>
+          <p>
+            <i class="fas fa-envelope me-3"></i>
+            mycompany@example.com
+          </p>
+          <p><i class="fas fa-phone me-3"></i> + 01 010 001 11</p>
+        </div>
+        <!-- Grid column -->
+      </div>
+      <!-- Grid row -->
+    </div>
+  </section>
+  <!-- Section: Links  -->
+
+  <!-- Copyright -->
+  <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021 Copyright:
+    <a class="text-reset fw-bold" href="https://mdbootstrap.com/">MDBootstrap.com</a>
+  </div>
+  <!-- Copyright -->
+</footer>
+<!-- Footer -->
+
+<div id="myModal" class="profile-modal">
+  <!-- Modal content -->
+    <div class="modal-content d-flex justify-content-center">
+        <span class="close">&times;</span>
+        <div class ="d-flex justify-content-center">
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                        <img alt="Card image cap" class="card-img-top embed-responsive-item" 
+                        src="/img/me.jpg">
+            </div>
+            
+            <div class="card text-white bg-dark mb-3" style="max-width: 18rem;">
+                <div class="card-header">Information</div>
+                <div class="card-body">
+                    <h5 class="card-title">Name: Dg Sg</h5>
+                    <p class="card-text">Description...</p>
+                </div>
+            </div>
+            
+        </div>
+    
+    </div>
+</div>
+
+
+
+
+<script>
+  // Get the modal
+  var modal = document.getElementById("myModal");
+
+  // Get the button that opens the modal
+  var btn = document.getElementById("myBtn2");
+
+  // Get the <span> element that closes the modal
+  var span = document.getElementsByClassName("close")[0];
+
+  // When the user clicks the button, open the modal 
+  btn.onclick = function() {
+    modal.style.display = "block";
+  }
+
+  // When the user clicks on <span> (x), close the modal
+  span.onclick = function() {
+    modal.style.display = "none";
+  }
+
+  // When the user clicks anywhere outside of the modal, close it
+  window.onclick = function(event) {
+    if (event.target == modal) {
+      modal.style.display = "none";
+    }
+  }
+</script>

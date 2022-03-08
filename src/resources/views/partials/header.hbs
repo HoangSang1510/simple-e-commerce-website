@@ -1,0 +1,91 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <div class="container">
+    <a class="navbar-brand" href="/">DgSg</a>
+
+       
+
+
+    <div class="search-bar">
+        <form class="form-inline border-light"  method="get", action="/search/"> {{!action quyết định query parameter submit ở đâu--}}
+                      {{!-- //<label for="search-input">Từ khóa</label> --}}
+                      <input type="text" name="s" class="form-control" id="search-input" placeholder="Nhập ở đây...">
+                        <button type="submit" class="btn btn-dark">
+                          <a style="font-size: 20px; color: rgb(252, 252, 252);">
+                            <i class="icon-search"></i>
+                          </a>
+                        </button>
+        </form>
+    </div>   
+
+
+    {{!-- <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false">
+      <span class="navbar-toggler-icon"></span>
+    </button> --}}
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      
+
+      <ul class="navbar-nav ml-auto">
+
+        {{# if session.passport.user }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="badge badge-secondary">{{session.Username}}</span>
+            </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/user/my_order">Đơn của tôi</a>
+                <a class="dropdown-item" href="/user/stored/liked/">Sản phẩm quan tâm</a>
+                <a class="dropdown-item" href="/user/logout">Đăng xuất</a>
+              </div>
+          </li>
+
+          {{ else }}
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="badge badge-secondary">Ẩn danh</span>
+           </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                <a class="dropdown-item" href="/user/signin">Đăng nhập</a>
+                <a class="dropdown-item" href="/user/signup">Đăng ký</a>
+              </div>
+          </li>
+          {{/if}}
+
+
+
+        <li class="nav-item">
+          <a class="nav-link" href="/home">Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="/user">User</a>
+        </li>
+
+
+
+        <li>
+            <a href="/shopping_cart/">
+              <button type="button" class="btn btn-primary">
+                Cart <span class="badge badge-light">{{session.cart.totalQty}}</span>
+                <span class="sr-only">Item add</span>
+              </button>
+            </a>
+        </li>
+
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        Menu
+        </a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+          <a class="dropdown-item" href="/product/create/">Thêm Sản Phẩm</a>
+          <a class="dropdown-item" href="/admin/stored/images">Quản lý Sản Phẩm</a>
+          <a class="dropdown-item" href="/admin/stored/user">Quản lý User</a>
+          <a class="dropdown-item" href="/admin/stored/order">Quản lý Order</a>
+          <a class="dropdown-item" href="/admin/stored/warehouse">Quản lý Kho</a>
+          <a class="dropdown-item" href="/user/logout">Đăng xuất</a>
+        </div>
+        </li>
+
+      </ul>
+    </div>
+  </div>
+</nav>

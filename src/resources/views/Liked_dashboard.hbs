@@ -1,0 +1,37 @@
+<div class="mt4">
+
+    {{# if liked}}
+        <h3>Sản phẩm bạn quan tâm</h3>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">STT</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Price</th>
+                    <th scope="col"></th>
+                </tr>
+            </thead>
+            <tbody>
+                {{#each liked}}
+                    <tr>
+                        <th scope="col">{{ sum @index 1}}</th>
+                        <td scope="col">{{this.name}}</th>
+                        <td scope="col">{{this.price}}</th>
+                        <td>
+                            <a href="/user/unliked/{{this._id}}", class="btn btn-link">Bỏ thích</a>
+                        </td>
+                    </tr>
+                {{/each}}
+            </tbody>
+        </table>
+    {{else}}
+        <h3 class="py-5 text-center">Bạn chưa quan tâm sản phẩm nào!</h3>
+        <div class="d-flex justify-content-center">
+            <a href="/">
+                <button type="button" class="btn btn-outline-success btn-lg">Tiếp tục ?</button>
+            </a>
+        </div>
+    {{/if}}
+
+</div>
+

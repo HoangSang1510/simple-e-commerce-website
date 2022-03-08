@@ -1,0 +1,79 @@
+<div class="mt4">
+    <h3>Quản lý Người dùng</h3>
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">STT</th>
+                <th scope="col">Role</th>
+                <th scope="col">Username</th>
+                <th scope="col">ID</th>
+                <th scope="col"></th>
+            </tr>
+        </thead>
+
+        <tbody>
+            {{#each users}}
+                <tr>
+                    <th scope="col">{{ sum @index 1}}</th>
+                    <td scope="col">{{this.role}}</th>
+                    <td scope="col">{{this.email}}</th>
+                    <td scope="col">{{this._id}}</th>
+                    <td>
+                        <a href="" class="btn btn-link" data-toggle="modal" data-id2= {{this._id}} data-target="#delete_user_model" >Xóa</a>
+                    </td>
+                </tr>
+            {{/each}}
+        </tbody>
+
+    </table>
+</div>
+
+{{!-- Confirm del --}}
+<div id="delete_user_model" class="modal" tabindex="-1" role="dialog">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Xóa người dùng này ?</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+        <p>Bạn có chắc muốn xóa người dùng này ?</p>
+      </div>
+      <div class="modal-footer">
+        <button id="button-delete-user" type="button" class="btn btn-danger">Xóa bỏ</button>
+        <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+{{!-- image hidden form delete --}}
+<form name = "delete_user_form" method="POST"></form>
+
+{{!-- khi sự kiện DOMContentLoad đc nap vào trình duyeet (cả JQuery) thì mới thực hiện đoạn code  --}}
+<script>
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        var id
+        var deleteForm = document.forms["delete_user_form"]
+        $('#delete_user_model').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget) 
+        id = button.data('id2')
+
+  
+        })
+
+        var btnDeleteUser = document.getElementById("button-delete-user")
+
+        btnDeleteUser.onclick = function(){ 
+            deleteForm.action = '/admin/stored/user/' + id + '?_method=DELETE'
+            deleteForm.submit()
+
+        }
+        
+    })
+
+</script>
