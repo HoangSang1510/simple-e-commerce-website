@@ -212,7 +212,7 @@
                         <a href = "/product/{{this._id}}">
                             <h5 class="card-title">{{this.name}}</h5>
                         </a>
-                        <p data-html="true" data-toggle="tooltip" data-placement="top" title="{{{this.description}}}" >{{{this.description}}}</p>
+                        <p data-html="true" class="card-text" data-toggle="tooltip" data-placement="top" title="{{{this.description}}}" >{{{this.description}}}</p>
 
                         {{# notzero this.discount}}
                             <h6 style="color:rgba(164, 156, 168, 0.911)"> <del>$ {{this.price}}</del></h6>
