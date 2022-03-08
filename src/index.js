@@ -15,7 +15,7 @@ const flash = require('connect-flash');
 
 const route =  require('./routes')
 const app = express()
-const port = 3000
+const port = process.env.PORT || 5000
 
 
 const db = require('./config/db')
@@ -89,7 +89,7 @@ app.use(session({
   store: MongoStore.create({
     mongoUrl: 'mongodb+srv://DgSg:Sg15101999@cluster0.grhd3.mongodb.net/f8_edu_dev?retryWrites=true&w=majority',
   }),
-  cookie: { maxAge: 30 * 60 * 1000 } //30 phut
+  cookie: { maxAge: 60 * 60 * 1000 } //60 phut
 }));
 
 app.use(flash());
@@ -116,13 +116,9 @@ app.use((req, res, next)=>{
 route(app)
 
 
-// app.listen(port, () => {
-//   console.log(`Example app listening at http://localhost:${port}`)
-// })
-
-app.listen(process.env.PORT || 3000, function(){
-  console.log("Express server listening on port %d in %s mode", this.address().port, app.settings.env);
-});
+app.listen(port, () => {
+  console.log(`Example app listening at http://localhost:${port}`)
+})
 
 
 
